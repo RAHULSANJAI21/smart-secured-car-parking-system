@@ -6,16 +6,16 @@
 #include<LCD.h>//including the LCD header file
 int count = 0;//declaring the integer count as '0'
 int car=99,h,t;//declaring the integers car to '99',h,t
-char input[12];//creating an array 
-int veri=0;
-char ch;
-char tag1[]="0B002841E381";
-char tag2[]="5900D4D42A73";
-char rxdata(void);
-void main(void)
+char input[12];//creating an array named input
+int veri=0;//creating a variable veri initialed with zero it can be used as verification flag
+char ch;//creating as char which is used to read the byte of data from SBUF
+char tag1[]="0B002841E381";//Creating a tag1 array which cointains the valid RFID card number
+char tag2[]="5900D4D42A73";//Creating a tag2 array which cointains the valid RFID card number
+char rxdata(void);//creating a function rxdata
+void main(void)//main function
 {
-unsigned char cmd[]={0x38,0x01,0x06,0x0c,0x80};
-int i;
+unsigned char cmd[]={0x38,0x01,0x06,0x0c,0x80};//creating a unsigned char cmd which contains the lcd commands
+int i;//creating a integer i
 TMOD=0x20;
 SCON=0x50;
 TH1=0xfd;
