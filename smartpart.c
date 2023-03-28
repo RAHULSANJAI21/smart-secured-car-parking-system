@@ -16,41 +16,35 @@ void main(void)//main function
 {
 unsigned char cmd[]={0x38,0x01,0x06,0x0c,0x80};//creating a unsigned char cmd which contains the lcd commands
 int i;//creating a integer i
-TMOD=0x20;
-SCON=0x50;
-TH1=0xfd;
-TR1=1;
-lcd_init();
-lcd_print("RFID card Number");
-while(1)
+lcd_init();//calling the lcd_init() function to initialze the lcd
+lcd_print("RFID card Number");//printing the message in the lcd using lcd_print
+while(1)//creating a while loop that runs infinite
 {
-count=0;
-while(count<12)
+count=0;//initializing the count to 0
+while(count<12)//as the RFID tag contains 12 bytes of data the loop run until count becomes 12
 {
-input[count]=rxdata();
-if(input[count]==tag1[count] || input[count]==tag2[count])
+input[count]=rxdata();//store the received byte of data in input array with count as index
+if(input[count]==tag1[count] || input[count]==tag2[count])//comparing the input current index value with tag1 0r tag2 same index value
 {
 
-veri++;
+veri++;//if any one matches increment veri
 
 }
 
-count++;
+count++;//incrementing the count
 
 }
 
-lcd_cmd(0x01);
-lcd_print("VERIFYIG...");
+lcd_cmd(0x01);//clearing the lcd using lcd command
+lcd_print("VERIFYIG...");//print the message using lcd_print function
 
-13
-
-lcd_cmd(0x01);
-if(veri==12)
+lcd_cmd(0x01);//clearing the lcd using the lcd commands
+if(veri==12)//check whether the veri is equal to 12
 {
 
-lcd_print("Verified");
-delay(500);
-car--;
+lcd_print("Verified");//printing the message using lcd_print function
+delay(500);//delay for 500ms
+car--;//decre
 lcd_cmd(0x01);
 lcd_print("AVAILABLE CAR SLOTS:");
 h=car/10;
