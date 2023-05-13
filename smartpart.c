@@ -44,36 +44,36 @@ if(veri==12)//check whether the veri is equal to 12
 
 lcd_print("Verified");//printing the message using lcd_print function
 delay(500);//delay for 500ms
-car--;//decre
-lcd_cmd(0x01);
-lcd_print("AVAILABLE CAR SLOTS:");
+car--;//decreasing car count
+lcd_cmd(0x01);//clear lcd
+lcd_print("AVAILABLE CAR SLOTS:");//print the availaple slots
 h=car/10;
 t=car%10;
-lcd_data(h|0x30);
+lcd_data(h|0x30);//displaying the slots in number
 lcd_data(t|0x30);
 veri=0;
 
 }
 else
 {
-lcd_print("Not Allowed");
+lcd_print("Not Allowed");//displaying not allowed
 delay(500);
 
 lcd_cmd(0x01);
-lcd_print("AVAILABLE CAR SLOTS:");
+lcd_print("AVAILABLE CAR SLOTS:");//displaying available slots
 h=car/10;
 t=car%10;
 lcd_data(h|0x30);
 lcd_data(t|0x30);
 
-veri=0;
+veri=0;//making veri equal to zero 
 }
 }
 }
-char rxdata()
+char rxdata()//rxdata function
 {
-while(RI==0);
-RI=0;
-ch=SBUF;
-return ch;
+while(RI==0);//while loop run till RI bit in scon becomes zero
+RI=0;//if RI becomes one making it zero
+ch=SBUF;//1 byte SBUF data is copied to ch
+return ch;//return ch
 }
